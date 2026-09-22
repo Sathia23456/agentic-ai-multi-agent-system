@@ -1,18 +1,21 @@
-def agent(name, task):
-    print(f"{name} is working on: {task}")
-    return f"{name} completed the task"
+from agents import ResearchAgent, AnalysisAgent, DecisionAgent
 
 
 def main():
-    agents = [
-        ("Research Agent", "Collect information"),
-        ("Analysis Agent", "Analyze the information"),
-        ("Decision Agent", "Make a final decision")
-    ]
+    topic = input("Enter a topic: ")
 
-    for name, task in agents:
-        result = agent(name, task)
-        print(result)
+    research_agent = ResearchAgent()
+    analysis_agent = AnalysisAgent()
+    decision_agent = DecisionAgent()
+
+    research = research_agent.run(topic)
+    analysis = analysis_agent.run(research)
+    decision = decision_agent.run(analysis)
+
+    print("\n--- Agentic AI Result ---")
+    print(research)
+    print(analysis)
+    print(decision)
 
 
 if __name__ == "__main__":
